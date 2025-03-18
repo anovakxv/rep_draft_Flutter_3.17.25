@@ -29,12 +29,11 @@ class CssStyle {
     }
     // Handle rgba
     if (colorValue.startsWith('rgba(')) {
-      List<String> values =
-          colorValue
-              .substring(5, colorValue.length - 1)
-              .split(',')
-              .map((e) => e.trim())
-              .toList();
+      List<String> values = colorValue
+          .substring(5, colorValue.length - 1)
+          .split(',')
+          .map((e) => e.trim())
+          .toList();
       return Color.fromRGBO(
         int.parse(values[0]),
         int.parse(values[1]),
@@ -44,12 +43,11 @@ class CssStyle {
     }
     // Handle rgb
     if (colorValue.startsWith('rgb(')) {
-      List<String> values =
-          colorValue
-              .substring(4, colorValue.length - 1)
-              .split(',')
-              .map((e) => e.trim())
-              .toList();
+      List<String> values = colorValue
+          .substring(4, colorValue.length - 1)
+          .split(',')
+          .map((e) => e.trim())
+          .toList();
       return Color.fromRGBO(
         int.parse(values[0]),
         int.parse(values[1]),
@@ -99,11 +97,9 @@ class CssStyle {
         Color color = parseColor(parts[2]) ?? Colors.black;
         return Border.all(
           width: width,
-          style:
-              style == 'dashed'
-                  ? BorderStyle.none
-                  : BorderStyle
-                      .solid, // Flutter doesn't support dashed directly
+          style: style == 'dashed'
+              ? BorderStyle.none
+              : BorderStyle.solid, // Flutter doesn't support dashed directly
           color: color,
         );
       }
@@ -116,15 +112,15 @@ class CssStyle {
     }
     if (styles.containsKey('borderRight')) {
       BorderSide side = _parseBorderSide(styles['borderRight'] as String);
-      border = (border ?? Border()).copyWith(right: side);
+      border = (border ?? const Border()).copyWith(right: side);
     }
     if (styles.containsKey('borderBottom')) {
       BorderSide side = _parseBorderSide(styles['borderBottom'] as String);
-      border = (border ?? Border()).copyWith(bottom: side);
+      border = (border ?? const Border()).copyWith(bottom: side);
     }
     if (styles.containsKey('borderLeft')) {
       BorderSide side = _parseBorderSide(styles['borderLeft'] as String);
-      border = (border ?? Border()).copyWith(left: side);
+      border = (border ?? const Border()).copyWith(left: side);
     }
     return border;
   }
@@ -292,29 +288,25 @@ class CssStyle {
     }
     // Individual margins override the combined margin
     if (styles.containsKey('marginTop')) {
-      top =
-          double.tryParse(
+      top = double.tryParse(
             styles['marginTop'].toString().replaceAll('px', ''),
           ) ??
           top;
     }
     if (styles.containsKey('marginRight')) {
-      right =
-          double.tryParse(
+      right = double.tryParse(
             styles['marginRight'].toString().replaceAll('px', ''),
           ) ??
           right;
     }
     if (styles.containsKey('marginBottom')) {
-      bottom =
-          double.tryParse(
+      bottom = double.tryParse(
             styles['marginBottom'].toString().replaceAll('px', ''),
           ) ??
           bottom;
     }
     if (styles.containsKey('marginLeft')) {
-      left =
-          double.tryParse(
+      left = double.tryParse(
             styles['marginLeft'].toString().replaceAll('px', ''),
           ) ??
           left;
@@ -349,29 +341,25 @@ class CssStyle {
     }
     // Individual paddings override the combined padding
     if (styles.containsKey('paddingTop')) {
-      top =
-          double.tryParse(
+      top = double.tryParse(
             styles['paddingTop'].toString().replaceAll('px', ''),
           ) ??
           top;
     }
     if (styles.containsKey('paddingRight')) {
-      right =
-          double.tryParse(
+      right = double.tryParse(
             styles['paddingRight'].toString().replaceAll('px', ''),
           ) ??
           right;
     }
     if (styles.containsKey('paddingBottom')) {
-      bottom =
-          double.tryParse(
+      bottom = double.tryParse(
             styles['paddingBottom'].toString().replaceAll('px', ''),
           ) ??
           bottom;
     }
     if (styles.containsKey('paddingLeft')) {
-      left =
-          double.tryParse(
+      left = double.tryParse(
             styles['paddingLeft'].toString().replaceAll('px', ''),
           ) ??
           left;
@@ -384,16 +372,14 @@ class CssStyle {
 extension CssContainer on Container {
   static Container styled(Map<String, dynamic> styles, {Widget? child}) {
     return Container(
-      width:
-          styles['width'] != null
-              ? double.tryParse(styles['width'].toString().replaceAll('px', ''))
-              : null,
-      height:
-          styles['height'] != null
-              ? double.tryParse(
-                styles['height'].toString().replaceAll('px', ''),
-              )
-              : null,
+      width: styles['width'] != null
+          ? double.tryParse(styles['width'].toString().replaceAll('px', ''))
+          : null,
+      height: styles['height'] != null
+          ? double.tryParse(
+              styles['height'].toString().replaceAll('px', ''),
+            )
+          : null,
       margin: CssStyle.getMargin(styles),
       padding: CssStyle.getPadding(styles),
       decoration: CssStyle.getBoxDecoration(styles),
