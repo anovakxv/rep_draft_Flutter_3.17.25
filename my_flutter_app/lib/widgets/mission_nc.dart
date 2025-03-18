@@ -3,15 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'mission_nc_model.dart';
+import 'fullscreen_gallery.dart';
+import 'top_navigation_bar.dart';
+import 'bottom_navigation_bar.dart';
 
 class MissionNC extends StatefulWidget {
   final String? projectTitle;
   final String? projectImage;
+  final List<String>? projectImages;
 
   const MissionNC({
     Key? key,
     this.projectTitle,
     this.projectImage,
+    this.projectImages,
   }) : super(key: key);
 
   @override
@@ -21,15 +26,25 @@ class MissionNC extends StatefulWidget {
 class _MissionNCState extends State<MissionNC> {
   String activeTab = 'story';
   late String projectTitle;
-  late String projectImage;
+  late List<String> projectImages;
   Users users = Users(leads: [], contributors: []);
 
   @override
   void initState() {
     super.initState();
     projectTitle = widget.projectTitle ?? "Networked Capital";
-    projectImage = widget.projectImage ??
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/06a95f73d05bfcc82110cc68bcd20d051cd1d57dac200d36449bddeae10773f2";
+
+    // Initialize with at least one image, or use the provided image
+    if (widget.projectImage != null) {
+      projectImages = [widget.projectImage!];
+    } else {
+      projectImages = [
+        "https://cdn.builder.io/api/v1/image/assets/TEMP/06a95f73d05bfcc82110cc68bcd20d051cd1d57dac200d36449bddeae10773f2",
+        "https://cdn.builder.io/api/v1/image/assets/TEMP/e70e566cf1143a39a400aff9c8ebcb5d12d79198015444e0e5b556e354c5adf8",
+        "https://cdn.builder.io/api/v1/image/assets/TEMP/5e9d99f464ed265a4827f7db201ba880fc310248b3a07f96786c438ffae2a1ee"
+      ];
+    }
+
     fetchUsers();
   }
 
@@ -116,7 +131,12 @@ class _MissionNCState extends State<MissionNC> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     // Header section
-                    _buildHeader(),
+                    TopNavigationBar(
+                      title: projectTitle,
+                      onBackPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
 
                     // Project image section
                     _buildProjectImage(),
@@ -152,138 +172,117 @@ class _MissionNCState extends State<MissionNC> {
             ),
 
             // Fixed bottom navigation bar
-            _buildBottomNavBar(),
+            BottomNavigationBar(
+              onFirstButtonPressed: () {
+                // Handle first button press
+              },
+              onSecondButtonPressed: () {
+                // Handle second button press
+              },
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildHeader() {
-    return Container(
-      color: const Color(0xFFF9F9F9),
-      width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(15, 13, 15, 13),
-      child: Stack(
-        children: [
-          // Left side with time
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 17),
-                child: RichText(
-                  text: const TextSpan(
+  void _openGallery(int initialIndex) {
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        opaque: false,
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return FullscreenGallery(
+            images: projectImages,
+            initialIndex: initialIndex,
+          );
+        },
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(0.0, 1.0);
+          const end = Offset.zero;
+          const curve = Curves.easeInOut;
+
+          var tween =
+              Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          var offsetAnimation = animation.drive(tween);
+
+          return SlideTransition(
+            position: offsetAnimation,
+            child: FadeTransition(
+              opacity: animation,
+              child: child,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildProjectImage() {
+    return GestureDetector(
+      onTap: () => _openGallery(0),
+      child: Container(
+        width: double.infinity,
+        height: 238,
+        padding: const EdgeInsets.fromLTRB(15, 234, 15, 3),
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Hero(
+                tag: 'project_image_0',
+                child: Image.network(
+                  projectImages[0],
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            // Gallery indicator if there are multiple images
+            if (projectImages.length > 1)
+              Positioned(
+                top: 10,
+                right: 25,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.6),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
                     children: [
-                      TextSpan(
-                        text: '9:4',
-                        style: TextStyle(
-                          fontFamily: 'SF Pro Text',
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: -0.28,
-                          color: Colors.black,
-                          fontSize: 14,
-                        ),
+                      const Icon(
+                        Icons.photo_library,
+                        color: Colors.white,
+                        size: 16,
                       ),
-                      TextSpan(
-                        text: '1',
-                        style: TextStyle(
-                          fontFamily: 'SF Pro Text',
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                          fontSize: 14,
+                      const SizedBox(width: 4),
+                      Text(
+                        '${projectImages.length}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25),
-                child: Image.network(
-                  'https://cdn.builder.io/api/v1/image/assets/TEMP/a398ba00952c53b13b747d5769dd3cb04cc68abfadbe821696f1bad07761f741?placeholderIfAbsent=true&apiKey=c8d530c75cd1478687ed622797fda84f',
-                  width: 24,
-                  height: 24,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ],
-          ),
-
-          // Right side with status icons
-          Positioned(
-            right: 35,
-            top: 13,
-            child: Row(
-              children: [
-                Image.network(
-                  'https://cdn.builder.io/api/v1/image/assets/TEMP/e70e566cf1143a39a400aff9c8ebcb5d12d79198015444e0e5b556e354c5adf8?placeholderIfAbsent=true&apiKey=c8d530c75cd1478687ed622797fda84f',
-                  width: 15,
-                  height: 15,
-                  fit: BoxFit.contain,
-                ),
-                const SizedBox(width: 5),
-                Image.network(
-                  'https://cdn.builder.io/api/v1/image/assets/TEMP/5e9d99f464ed265a4827f7db201ba880fc310248b3a07f96786c438ffae2a1ee?placeholderIfAbsent=true&apiKey=c8d530c75cd1478687ed622797fda84f',
-                  width: 15,
-                  height: 15,
-                  fit: BoxFit.contain,
-                ),
-              ],
-            ),
-          ),
-
-          // Center title
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 31,
-            child: Center(
-              child: Text(
-                projectTitle,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w600,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildProjectImage() {
-    return Container(
-      width: double.infinity,
-      height: 238,
-      padding: const EdgeInsets.fromLTRB(15, 234, 15, 3),
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.network(
-              projectImage,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: 1,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color(0xFFE4E4E4),
-                  width: 1,
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                height: 1,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color(0xFFE4E4E4),
+                    width: 1,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -620,98 +619,6 @@ class _MissionNCState extends State<MissionNC> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildBottomNavBar() {
-    return Positioned(
-      bottom: 0,
-      left: 0,
-      right: 0,
-      child: Container(
-        height: 75,
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 10,
-              offset: const Offset(0, -2),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            Container(
-              height: 1,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color(0xFFE4E4E4),
-                  width: 1,
-                ),
-              ),
-              margin: const EdgeInsets.only(bottom: 15),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Container(
-                    constraints: const BoxConstraints(maxWidth: 345),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              primary: const Color(0xFF7BBF4B),
-                              padding: const EdgeInsets.symmetric(vertical: 12),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              elevation: 4,
-                              shadowColor:
-                                  const Color(0xFF7BBF4B).withOpacity(0.1),
-                            ),
-                            child: Image.network(
-                              'https://cdn.builder.io/api/v1/image/assets/TEMP/239ce2bc0ecd48e82606b7b17e9ef300a0370adf2b04059541d256922f2a5e50?placeholderIfAbsent=true&apiKey=c8d530c75cd1478687ed622797fda84f',
-                              width: 24,
-                              height: 24,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 30),
-                        OutlinedButton(
-                          onPressed: () {},
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.all(12),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            side: const BorderSide(
-                              color: Color(0xFFE4E4E4),
-                              width: 1,
-                            ),
-                          ),
-                          child: Image.network(
-                            'https://cdn.builder.io/api/v1/image/assets/TEMP/3628d031652289af709575c878c2b3c18ab234153712aa6810191dba2f20c1e6?placeholderIfAbsent=true&apiKey=c8d530c75cd1478687ed622797fda84f',
-                            width: 24,
-                            height: 24,
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
       ),
     );
   }

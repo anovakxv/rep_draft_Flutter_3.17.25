@@ -26,6 +26,27 @@ class User {
   }
 }
 
+class ProjectImages {
+  final List<String> images;
+
+  ProjectImages({
+    required this.images,
+  });
+
+  factory ProjectImages.fromJson(Map<String, dynamic> json) {
+    return ProjectImages(
+      images:
+          (json['images'] as List<dynamic>).map((e) => e as String).toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'images': images,
+    };
+  }
+}
+
 class Users {
   final List<User> leads;
   final List<User> contributors;

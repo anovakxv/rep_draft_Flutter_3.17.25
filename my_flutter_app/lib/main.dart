@@ -102,3 +102,42 @@ class MissionNCScreen extends StatelessWidget {
     );
   }
 }
+import 'package:flutter/material.dart';
+import 'widgets/mission_nc.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Networked Capital',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        fontFamily: 'Inter',
+      ),
+      home: const MissionNCScreen(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class MissionNCScreen extends StatelessWidget {
+  const MissionNCScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: MissionNC(
+          projectTitle: "Networked Capital",
+          projectImage: "https://cdn.builder.io/api/v1/image/assets/TEMP/06a95f73d05bfcc82110cc68bcd20d051cd1d57dac200d36449bddeae10773f2",
+        ),
+      ),
+    );
+  }
+}
