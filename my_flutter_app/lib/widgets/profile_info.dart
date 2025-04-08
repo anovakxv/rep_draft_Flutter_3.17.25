@@ -12,7 +12,7 @@ class ProfileInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -34,11 +34,11 @@ class ProfileInfo extends StatelessWidget {
               },
             ),
           ),
-          SizedBox(width: 11),
+          const SizedBox(width: 11),
           // Profile details
           Expanded(
             child: Container(
-              padding: EdgeInsets.only(top: 5),
+              padding: const EdgeInsets.only(top: 5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -46,19 +46,19 @@ class ProfileInfo extends StatelessWidget {
                   Text.rich(
                     TextSpan(
                       children: [
-                        TextSpan(text: 'Rep Type: '),
+                        const TextSpan(text: 'Rep Type: '),
                         TextSpan(text: userProfile.repType),
-                        TextSpan(text: ' City: '),
+                        const TextSpan(text: ' City: '),
                         TextSpan(text: userProfile.city),
                       ],
                     ),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Inter',
                     ),
                   ),
-                  SizedBox(height: 7),
+                  const SizedBox(height: 7),
                   // Skills list
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +66,7 @@ class ProfileInfo extends StatelessWidget {
                       userProfile.skills.length,
                       (index) => Text(
                         '${index + 1}. ${userProfile.skills[index]}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 17,
                           fontFamily: 'Inter',
                         ),

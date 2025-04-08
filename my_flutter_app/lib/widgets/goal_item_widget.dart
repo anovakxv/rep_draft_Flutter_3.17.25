@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/goal_item.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_app/models/goal_item.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GoalItemWidget extends StatelessWidget {
   final GoalItem item;
@@ -14,7 +17,7 @@ class GoalItemWidget extends StatelessWidget {
     return InkWell(
       onTap: () => Navigator.pushNamed(context, item.route),
       child: Container(
-        margin: EdgeInsets.only(bottom: 14),
+        margin: const EdgeInsets.only(bottom: 14),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -35,28 +38,28 @@ class GoalItemWidget extends StatelessWidget {
                       );
                     },
                   ),
-            SizedBox(width: 14),
+            const SizedBox(width: 14),
             // Goal details
             Expanded(
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 3),
+                padding: const EdgeInsets.symmetric(vertical: 3),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       item.title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
-                        fontFamily: 'Inter',
+                        fontFamily: 'Roboto',
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       item.description,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 17,
-                        fontFamily: 'Inter',
+                        fontFamily: 'Roboto',
                       ),
                     ),
                   ],
@@ -75,7 +78,7 @@ class GoalItemWidget extends StatelessWidget {
       return Container(
         width: 179,
         height: 90,
-        color: Color(0xFF0093D0),
+        color: const Color(0xFF0093D0),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -86,19 +89,19 @@ class GoalItemWidget extends StatelessWidget {
                 height: 50,
                 fit: BoxFit.contain,
               ),
-              Text(
+              const Text(
                 'BOYS & GIRLS CLUBS',
                 style: TextStyle(
                   color: Colors.white,
-                  fontFamily: 'Alkalami',
+                  fontFamily: 'Roboto',
                   fontSize: 12,
                 ),
               ),
-              Text(
+              const Text(
                 'OF THE SIOUX EMPIRE',
                 style: TextStyle(
                   color: Colors.white,
-                  fontFamily: 'Inter',
+                  fontFamily: 'Roboto',
                   fontSize: 10,
                   fontWeight: FontWeight.w600,
                   height: 0.8,

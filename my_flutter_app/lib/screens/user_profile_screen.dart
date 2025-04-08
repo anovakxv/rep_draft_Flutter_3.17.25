@@ -7,6 +7,7 @@ import 'package:flutter_app/widgets/profile_tabs.dart';
 import 'package:flutter_app/widgets/goal_item_widget.dart';
 import 'package:flutter_app/widgets/bottom_navigation.dart';
 
+// note
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({Key? key}) : super(key: key);
 
@@ -77,7 +78,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
   Future<void> _fetchUserProfile() async {
     // Simulate API call
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     setState(() {
       isLoading = false;
     });
@@ -103,11 +104,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             // Main content
             SingleChildScrollView(
               child: Container(
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 430,
                 ),
-                margin:
-                    EdgeInsets.only(bottom: 72), // Space for bottom navigation
+                margin: const EdgeInsets.only(
+                    bottom: 72), // Space for bottom navigation
                 child: Column(
                   children: [
                     // Header
@@ -127,7 +128,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
                     // Goal items
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Column(
                         children: goalItems
                             .map((item) => GoalItemWidget(item: item))
@@ -151,7 +152,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             if (isLoading)
               Container(
                 color: Colors.white.withOpacity(0.7),
-                child: Center(
+                child: const Center(
                   child: CircularProgressIndicator(
                     valueColor:
                         AlwaysStoppedAnimation<Color>(Color(0xFF7BBF4B)),

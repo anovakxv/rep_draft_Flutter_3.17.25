@@ -54,7 +54,7 @@ class BottomNavigationBar extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: onFirstButtonPressed,
                             style: ElevatedButton.styleFrom(
-                              primary: const Color(0xFF7BBF4B),
+                              backgroundColor: const Color(0xFF7BBF4B),
                               padding: const EdgeInsets.symmetric(vertical: 12),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(6),
@@ -62,6 +62,9 @@ class BottomNavigationBar extends StatelessWidget {
                               elevation: 4,
                               shadowColor:
                                   const Color(0xFF7BBF4B).withOpacity(0.1),
+                              textStyle: const TextStyle(
+                                fontFamily: 'Roboto', // Added font family
+                              ),
                             ),
                             child: Image.network(
                               'https://cdn.builder.io/api/v1/image/assets/TEMP/239ce2bc0ecd48e82606b7b17e9ef300a0370adf2b04059541d256922f2a5e50?placeholderIfAbsent=true&apiKey=c8d530c75cd1478687ed622797fda84f',
@@ -82,6 +85,9 @@ class BottomNavigationBar extends StatelessWidget {
                             side: const BorderSide(
                               color: Color(0xFFE4E4E4),
                               width: 1,
+                            ),
+                            textStyle: const TextStyle(
+                              fontFamily: 'Roboto', // Added font family
                             ),
                           ),
                           child: Image.network(

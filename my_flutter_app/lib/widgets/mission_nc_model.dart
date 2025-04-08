@@ -74,3 +74,14 @@ class Users {
     };
   }
 }
+
+style: ElevatedButton.styleFrom(
+  textStyle = const TextStyle(
+    fontFamily: 'Roboto', // Added font family
+  ),
+),
+style: OutlinedButton.styleFrom(
+  textStyle = const TextStyle(
+    fontFamily: 'Roboto', // Added font family
+  ),
+),

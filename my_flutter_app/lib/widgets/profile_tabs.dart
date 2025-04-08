@@ -13,7 +13,7 @@ class ProfileTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(15),
+      margin: const EdgeInsets.all(15),
       height: 34,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black),
@@ -39,7 +39,7 @@ class ProfileTabs extends StatelessWidget {
           decoration: BoxDecoration(
             color: isActive ? Colors.black : Colors.transparent,
             border: hasBorder
-                ? Border(
+                ? const Border(
                     right: BorderSide(color: Colors.black, width: 1),
                   )
                 : null,

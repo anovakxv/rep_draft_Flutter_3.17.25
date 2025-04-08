@@ -11,16 +11,18 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'User Profile App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Color(0xFF7BBF4B),
+        primaryColor: const Color(0xFF7BBF4B),
         fontFamily: 'Inter',
         scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xFFF9F9F9),
           elevation: 0,
           iconTheme: IconThemeData(
@@ -28,36 +30,36 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: UserProfileScreen(),
+      home: const UserProfileScreen(),
       routes: {
-        '/profile': (context) => UserProfileScreen(),
+        '/profile': (context) => const UserProfileScreen(),
         '/economic-advancement': (context) => Scaffold(
-              appBar: AppBar(title: Text('Economic Advancement')),
-              body: Center(child: Text('Economic Advancement Details')),
+              appBar: AppBar(title: const Text('Economic Advancement')),
+              body: const Center(child: Text('Economic Advancement Details')),
             ),
         '/boys-and-girls-club': (context) => Scaffold(
-              appBar: AppBar(title: Text('Boys & Girls Club')),
-              body: Center(child: Text('Boys & Girls Club Details')),
+              appBar: AppBar(title: const Text('Boys & Girls Club')),
+              body: const Center(child: Text('Boys & Girls Club Details')),
             ),
         '/education': (context) => Scaffold(
-              appBar: AppBar(title: Text('Education')),
-              body: Center(child: Text('Education Details')),
+              appBar: AppBar(title: const Text('Education')),
+              body: const Center(child: Text('Education Details')),
             ),
         '/egt-solar': (context) => Scaffold(
-              appBar: AppBar(title: Text('EGT Solar')),
-              body: Center(child: Text('EGT Solar Details')),
+              appBar: AppBar(title: const Text('EGT Solar')),
+              body: const Center(child: Text('EGT Solar Details')),
             ),
         '/networked-capital': (context) => Scaffold(
-              appBar: AppBar(title: Text('Networked Capital')),
-              body: Center(child: Text('Networked Capital Details')),
+              appBar: AppBar(title: const Text('Networked Capital')),
+              body: const Center(child: Text('Networked Capital Details')),
             ),
         '/actions': (context) => Scaffold(
-              appBar: AppBar(title: Text('Actions')),
-              body: Center(child: Text('Actions Page')),
+              appBar: AppBar(title: const Text('Actions')),
+              body: const Center(child: Text('Actions Page')),
             ),
         '/messaging': (context) => Scaffold(
-              appBar: AppBar(title: Text('Messaging')),
-              body: Center(child: Text('Messaging Page')),
+              appBar: AppBar(title: const Text('Messaging')),
+              body: const Center(child: Text('Messaging Page')),
             ),
       },
     );

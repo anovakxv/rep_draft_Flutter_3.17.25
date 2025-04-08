@@ -30,7 +30,7 @@ class TopNavigationBar extends StatelessWidget {
                       TextSpan(
                         text: '9:4',
                         style: TextStyle(
-                          fontFamily: 'SF Pro Text',
+                          fontFamily: 'Roboto',
                           fontWeight: FontWeight.w600,
                           letterSpacing: -0.28,
                           color: Colors.black,
@@ -40,7 +40,7 @@ class TopNavigationBar extends StatelessWidget {
                       TextSpan(
                         text: '1',
                         style: TextStyle(
-                          fontFamily: 'SF Pro Text',
+                          fontFamily: 'Roboto',
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                           fontSize: 14,
@@ -55,8 +55,8 @@ class TopNavigationBar extends StatelessWidget {
                 child: InkWell(
                   onTap: onBackPressed,
                   borderRadius: BorderRadius.circular(12),
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(4.0),
                     child: Icon(
                       Icons.arrow_back,
                       color: Colors.black,
@@ -88,7 +88,7 @@ class TopNavigationBar extends StatelessWidget {
           ),
 
           // Right side with status icons
-          Positioned(
+          const Positioned(
             right: 35,
             top: 13,
             child: Row(

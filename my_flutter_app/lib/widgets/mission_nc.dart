@@ -406,7 +406,7 @@ class _MissionNCState extends State<MissionNC> {
               const Text(
                 'Leads:',
                 style: TextStyle(
-                  fontFamily: 'Inter',
+                  fontFamily: 'Roboto',
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
@@ -439,24 +439,24 @@ class _MissionNCState extends State<MissionNC> {
           // Names row 1
           Container(
             alignment: Alignment.centerRight,
-            child: Row(
+            child: const Row(
               mainAxisSize: MainAxisSize.min,
-              children: const [
+              children: [
                 Text('MP',
                     style: TextStyle(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Roboto',
                         fontSize: 14,
                         fontWeight: FontWeight.w600)),
                 SizedBox(width: 17),
                 Text('CP',
                     style: TextStyle(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Roboto',
                         fontSize: 14,
                         fontWeight: FontWeight.w600)),
                 SizedBox(width: 17),
                 Text('MN',
                     style: TextStyle(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Roboto',
                         fontSize: 14,
                         fontWeight: FontWeight.w600)),
               ],
@@ -468,37 +468,37 @@ class _MissionNCState extends State<MissionNC> {
             alignment: Alignment.center,
             margin: const EdgeInsets.only(top: -24),
             width: 208,
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text('AN',
                     style: TextStyle(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Roboto',
                         fontSize: 14,
                         fontWeight: FontWeight.w600)),
                 Text('HJ',
                     style: TextStyle(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Roboto',
                         fontSize: 14,
                         fontWeight: FontWeight.w600)),
                 Text('AO',
                     style: TextStyle(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Roboto',
                         fontSize: 14,
                         fontWeight: FontWeight.w600)),
                 Text('RH',
                     style: TextStyle(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Roboto',
                         fontSize: 14,
                         fontWeight: FontWeight.w600)),
                 Text('KR',
                     style: TextStyle(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Roboto',
                         fontSize: 14,
                         fontWeight: FontWeight.w600)),
                 Text('JB',
                     style: TextStyle(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Roboto',
                         fontSize: 14,
                         fontWeight: FontWeight.w600)),
               ],
@@ -520,7 +520,7 @@ class _MissionNCState extends State<MissionNC> {
             text: const TextSpan(
               style: TextStyle(
                 fontSize: 16,
-                fontFamily: 'Inter',
+                fontFamily: 'Roboto',
                 color: Colors.black,
                 height: 1.25,
               ),
@@ -560,7 +560,7 @@ class _MissionNCState extends State<MissionNC> {
             child: const Text(
               'Principles',
               style: TextStyle(
-                fontFamily: 'Inter',
+                fontFamily: 'Roboto',
                 fontSize: 16,
                 color: Colors.blue,
                 decoration: TextDecoration.underline,
@@ -570,7 +570,7 @@ class _MissionNCState extends State<MissionNC> {
           const Text(
             '.',
             style: TextStyle(
-              fontFamily: 'Inter',
+              fontFamily: 'Roboto',
               fontSize: 16,
               color: Colors.black,
             ),
@@ -579,7 +579,7 @@ class _MissionNCState extends State<MissionNC> {
           const Text(
             'We empower people to:',
             style: TextStyle(
-              fontFamily: 'Inter',
+              fontFamily: 'Roboto',
               fontSize: 16,
               color: Colors.black,
             ),
@@ -603,7 +603,7 @@ class _MissionNCState extends State<MissionNC> {
           const Text(
             '• ',
             style: TextStyle(
-              fontFamily: 'Inter',
+              fontFamily: 'Roboto',
               fontSize: 16,
               color: Colors.black,
             ),
@@ -612,7 +612,7 @@ class _MissionNCState extends State<MissionNC> {
             child: Text(
               text,
               style: const TextStyle(
-                fontFamily: 'Inter',
+                fontFamily: 'Roboto',
                 fontSize: 16,
                 color: Colors.black,
               ),

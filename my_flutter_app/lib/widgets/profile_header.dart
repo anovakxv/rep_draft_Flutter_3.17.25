@@ -13,7 +13,7 @@ class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color(0xFFF9F9F9),
         border: Border(
           bottom: BorderSide(
@@ -27,9 +27,9 @@ class ProfileHeader extends StatelessWidget {
           // Status bar placeholder
           Container(
             height: 48,
-            padding: EdgeInsets.symmetric(horizontal: 19),
+            padding: const EdgeInsets.symmetric(horizontal: 19),
             alignment: Alignment.center,
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
@@ -53,25 +53,25 @@ class ProfileHeader extends StatelessWidget {
           ),
           // Header with back button and name
           Container(
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             child: Row(
               children: [
                 InkWell(
                   onTap: onBackPressed,
                   borderRadius: BorderRadius.circular(4),
                   child: Container(
-                    padding: EdgeInsets.all(8),
-                    child: Icon(
+                    padding: const EdgeInsets.all(8),
+                    child: const Icon(
                       Icons.arrow_upward,
                       color: Color(0xFF8CC75D),
                       size: 24,
                     ),
                   ),
                 ),
-                SizedBox(width: 107),
+                const SizedBox(width: 107),
                 Text(
                   userName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
                     fontFamily: 'Inter',
